@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "roomnote")
 public class RoomNote {
     @Id
     @GeneratedValue

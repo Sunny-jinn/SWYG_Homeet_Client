@@ -2,20 +2,21 @@ package com.sumin.homeet.domain;
 
 
 import com.sumin.homeet.domain.room.Room;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue
     @Column(name = "user_id")
     private Long id;
     private String email;
-    private String pwd;
-    private String phoneNo;
     private String nickname;
 
     @OneToMany(mappedBy = "userRoomNote")
