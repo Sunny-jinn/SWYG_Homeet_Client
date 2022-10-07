@@ -6,6 +6,7 @@ import com.sumin.homeet.domain.room.Room;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "likeuser")
 public class LikeUser {
     @Id
     @GeneratedValue

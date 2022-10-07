@@ -16,10 +16,11 @@ import java.net.URL;
 public class KakaoService {
     private final UserService userService;
     @Value("${REDIRECT_URI}")
-    private String redirectUri;
+    String redirectUri;
 
     @Value("${CLIENT_ID}")
-    private String clientId;
+    String clientId;
+
     public String getKakaoAccessToken (String code){
         String access_Token = "";
         String refresh_Token = "";
@@ -58,6 +59,7 @@ public class KakaoService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("access_Token = " + access_Token);
         return access_Token;
     }
     public void getKakaoUser(String token) {
@@ -67,7 +69,6 @@ public class KakaoService {
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
             conn.setRequestProperty("Authorization", "Bearer " + token);
-//            conn.setRequestProperty("Authorization", "KakaoAK" + "5a099385e9e190d6637b25ad1349d151");
             //나중에 처리할 로직
             int responseCode = conn.getResponseCode();
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -78,11 +79,14 @@ public class KakaoService {
             }
             JsonObject json = new Gson().fromJson(msg, JsonObject.class);
             int id = json.get("id").getAsInt();
-            boolean b = json.get("kakao_account").getAsJsonObject().get("has_email").getAsBoolean();
+            JsonObject jsonObject = json.get("kakao_account").getAsJsonObject();
+            System.out.println("jsonObject = " + jsonObject);
+            boolean b = jsonObject.get("has_email").getAsBoolean();
             if (b) {
-                String email = json.get("kakao_account").getAsJsonObject().get("email").getAsString();
-//                String name = json.get("kakao_account").getAsJsonObject().get("nickname").getAsString();
-                validationUser(email,"test");
+                String email = jsonObject.get("email").getAsString();
+                String name = jsonObject.get("profile").getAsJsonObject().get("nickname").getAsString();
+//                System.out.println("name = " + name);
+                validationUser(email,name);
             }
             reader.close();
         } catch (IOException e) {
@@ -93,7 +97,7 @@ public class KakaoService {
         User user = new User();
         user.setEmail(email);
         user.setNickname(nickname);
-        userService.validationDupUser(user);
+        String s = userService.validationDupUser(user);
 
     }
 }
