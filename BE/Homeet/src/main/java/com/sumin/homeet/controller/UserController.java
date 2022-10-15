@@ -6,6 +6,7 @@ import com.sumin.homeet.jwt.JwtService;
 import com.sumin.homeet.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,8 +17,10 @@ public class UserController {
     private final UserService userService;
     //access token을 받아오는 과정?
     private final JwtService jwtService;
-    @GetMapping("/")
-    public String validate(@RequestHeader("X-AUTH-TOKEN") String token){
+    @PostMapping("/")
+    public String test(@RequestHeader HttpHeaders headers){
+        System.out.println("headers.toString() = " + headers.toString());
+        System.out.println(" = ");
         return "test";
     }
 

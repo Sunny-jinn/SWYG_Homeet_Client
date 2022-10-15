@@ -9,7 +9,7 @@ public class MonthRoomDto {
     private Long id;
     private boolean duplex;
     private String location;
-    private int OnePrice;
-    private int PerPrice;
+    private int onePrice;
+    private int perPrice;
     private String content;
 }
