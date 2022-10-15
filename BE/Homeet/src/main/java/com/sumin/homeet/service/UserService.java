@@ -18,8 +18,8 @@ public class UserService {
     private final JwtService jwtService;
     @Transactional
     public Long register(User user){
-        userRepository.save(user);
-        return user.getId();
+        User userSave = userRepository.save(user);
+        return userSave.getId();
     }
 
     @Transactional

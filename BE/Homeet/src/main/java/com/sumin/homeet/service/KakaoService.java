@@ -62,7 +62,8 @@ public class KakaoService {
         System.out.println("access_Token = " + access_Token);
         return access_Token;
     }
-    public void getKakaoUser(String token) {
+    public String getKakaoUser(String token) {
+        String jwt = "";
         try{
             URL url = new URL("https://kapi.kakao.com/v2/user/me");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -86,18 +87,19 @@ public class KakaoService {
                 String email = jsonObject.get("email").getAsString();
                 String name = jsonObject.get("profile").getAsJsonObject().get("nickname").getAsString();
 //                System.out.println("name = " + name);
-                validationUser(email,name);
+                jwt = validationUser(email, name);
             }
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return jwt;
     }
-    private void validationUser(String email,String nickname){
+    private String validationUser(String email,String nickname){
         User user = new User();
         user.setEmail(email);
         user.setNickname(nickname);
-        String s = userService.validationDupUser(user);
-
+        String token = userService.validationDupUser(user);
+        return token;
     }
 }
