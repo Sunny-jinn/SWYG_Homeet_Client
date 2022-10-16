@@ -18,4 +18,5 @@ public class RoomDto {
     private int onePrice;
     private int perPrice;
     private int yearPrice;
+    private UserDto user;
 }

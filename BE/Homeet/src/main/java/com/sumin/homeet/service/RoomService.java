@@ -1,9 +1,11 @@
 package com.sumin.homeet.service;
 
+import com.sumin.homeet.domain.User;
 import com.sumin.homeet.domain.room.MonthRoom;
 import com.sumin.homeet.domain.room.YearRoom;
 import com.sumin.homeet.dto.MonthRoomDto;
 import com.sumin.homeet.dto.RoomDto;
+import com.sumin.homeet.dto.UserDto;
 import com.sumin.homeet.dto.YearRoomDto;
 import com.sumin.homeet.repository.MonthRoomRepository;
 import com.sumin.homeet.repository.RoomRepository;
@@ -24,49 +26,70 @@ public class RoomService {
     private final MonthRoomRepository monthRoomRepository;
     private final YearRoomRepository yearRoomRepository;
     private final RoomRepository roomRepository;
+    private final UserService userService;
     private final AwsS3Service awsS3Service;
     @Transactional
-    public void register(RoomDto room, List<MultipartFile> multipartFiles){
+    public void register(RoomDto room, List<MultipartFile> multipartFiles, String email){
         List<String> urlLists = awsS3Service.uploadFile(multipartFiles);
+        User user = userService.findOneByEmail(email);
         room.setImageUrl(urlLists);
         if (room.getDtype() == "Y"){
-            YearRoom r = new YearRoom();
-            r.setImageUrl(room.getImageUrl());
-            r.setDuplex(room.getDuplex());
-            r.setContent(room.getContent());
-            r.setLocation(room.getLocation());
-            r.setYearPrice(room.getYearPrice());
+            YearRoom r = getYearRoom(room, user);
             yearRoomRepository.save(r);
         }
         else if (room.getDtype() == "M"){
-            MonthRoom r = new MonthRoom();
-            r.setImageUrl(room.getImageUrl());
-            r.setDuplex(room.getDuplex());
-            r.setContent(room.getContent());
-            r.setLocation(room.getLocation());
-            r.setPerPrice(room.getPerPrice());
-            r.setOnePrice(room.getOnePrice());
+            MonthRoom r = getMonthRoom(room, user);
             monthRoomRepository.save(r);
         }
     }
+
+    private static MonthRoom getMonthRoom(RoomDto room, User user) {
+        MonthRoom r = new MonthRoom();
+        r.setImageUrl(room.getImageUrl());
+        r.setDuplex(room.getDuplex());
+        r.setContent(room.getContent());
+        r.setLocation(room.getLocation());
+        r.setPerPrice(room.getPerPrice());
+        r.setOnePrice(room.getOnePrice());
+        r.setUserRoom(user);
+        return r;
+    }
+
+    private static YearRoom getYearRoom(RoomDto room, User user) {
+        YearRoom r = new YearRoom();
+        r.setImageUrl(room.getImageUrl());
+        r.setDuplex(room.getDuplex());
+        r.setContent(room.getContent());
+        r.setLocation(room.getLocation());
+        r.setYearPrice(room.getYearPrice());
+        r.setUserRoom(user);
+        return r;
+    }
+
     public RoomDto findOne(Long roomId, String dtype) {
         if (dtype=="Y"){
             YearRoom room = yearRoomRepository.getReferenceById(roomId);
+            User user = room.getUserRoom();
+            UserDto userDto = UserDto.builder().userId(user.getId()).nickname(user.getNickname()).email(user.getEmail()).build();
             return RoomDto.builder()
                     .imageUrl(room.getImageUrl())
                     .duplex(room.getDuplex())
                     .content(room.getContent())
                     .yearPrice(room.getYearPrice())
+                    .user(userDto)
                     .build();
         }
         else{
             MonthRoom room = monthRoomRepository.getReferenceById(roomId);
+            User user = room.getUserRoom();
+            UserDto userDto = UserDto.builder().userId(user.getId()).nickname(user.getNickname()).email(user.getEmail()).build();
             return RoomDto.builder()
                     .imageUrl(room.getImageUrl())
                     .duplex(room.getDuplex())
                     .content(room.getContent())
                     .perPrice(room.getPerPrice())
                     .onePrice(room.getOnePrice())
+                    .user(userDto)
                     .build();
         }
 
@@ -76,15 +99,20 @@ public class RoomService {
         List<MonthRoom> monthRoomList = monthRoomRepository.findByLocation(location);
         List<RoomDto> roomDtoList = new ArrayList<>();
         yearRoomList.forEach(room -> {
+            User user = room.getUserRoom();
+            UserDto userDto = UserDto.builder().userId(user.getId()).nickname(user.getNickname()).email(user.getEmail()).build();
             roomDtoList.add(RoomDto.builder()
                             .imageUrl(room.getImageUrl())
                             .content(room.getContent())
                             .duplex(room.getDuplex())
                             .id(room.getId())
+                            .user(userDto)
                             .yearPrice(room.getYearPrice())
                     .build());
         });
         monthRoomList.forEach(room -> {
+            User user = room.getUserRoom();
+            UserDto userDto = UserDto.builder().userId(user.getId()).nickname(user.getNickname()).email(user.getEmail()).build();
             roomDtoList.add(RoomDto.builder()
                     .imageUrl(room.getImageUrl())
                     .content(room.getContent())
@@ -92,6 +120,7 @@ public class RoomService {
                     .id(room.getId())
                     .onePrice(room.getOnePrice())
                     .perPrice(room.getPerPrice())
+                    .user(userDto)
                     .build());
         });
         return roomDtoList;

@@ -24,14 +24,15 @@ import java.util.Map;
 @RequestMapping("/room")
 public class RoomController {
     private final UserService userService;
-    private final AwsS3Service awsS3Service;
+    private final JwtService jwtService;
     private final RoomService roomService;
     //get
 
     //register
     @PostMapping("/register")
     public ResponseEntity<Map<String,String>> registerRoom(@RequestPart("data") RoomDto room,@RequestPart("images") List<MultipartFile> multipartFiles){
-        roomService.register(room,multipartFiles);
+        String email = jwtService.getEmail();
+        roomService.register(room,multipartFiles,email);
         Map<String,String> msg = new HashMap<>();
         msg.put("message", "register success");
         return ResponseEntity.ok().body(msg);

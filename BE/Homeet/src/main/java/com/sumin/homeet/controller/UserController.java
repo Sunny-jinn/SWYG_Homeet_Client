@@ -7,9 +7,12 @@ import com.sumin.homeet.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,6 +25,14 @@ public class UserController {
         System.out.println("headers.toString() = " + headers.toString());
         System.out.println(" = ");
         return "test";
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<Map<String,String>> getProfile(){
+        String email = jwtService.getEmail();
+        Map<String,String> data = new HashMap<>();
+        data.put("nickname",userService.getNickname(email));
+        return ResponseEntity.ok().body(data);
     }
 
 

@@ -47,4 +47,8 @@ public class UserService {
     public User findOneByEmail(String email){
         return userRepository.findByEmail(email);
     }
+    public String getNickname(String email){
+        User user = userRepository.findByEmail(email);
+        return user.getNickname();
+    }
 }
