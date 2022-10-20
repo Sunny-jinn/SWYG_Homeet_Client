@@ -20,12 +20,6 @@ public class UserController {
     private final UserService userService;
     //access token을 받아오는 과정?
     private final JwtService jwtService;
-    @PostMapping("/")
-    public String test(@RequestHeader HttpHeaders headers){
-        System.out.println("headers.toString() = " + headers.toString());
-        System.out.println(" = ");
-        return "test";
-    }
 
     @GetMapping("/profile")
     public ResponseEntity<Map<String,String>> getProfile(){

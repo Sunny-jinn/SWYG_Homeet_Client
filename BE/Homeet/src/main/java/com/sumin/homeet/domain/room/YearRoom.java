@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 public class YearRoom extends Room{
     private int YearPrice;
     public void changeYear(YearRoomDto room){
+        System.out.println("room Year= " + room);
         this.YearPrice = room.getYearPrice();
         this.setLocation(room.getLocation());
         this.setDuplex(room.isDuplex());
