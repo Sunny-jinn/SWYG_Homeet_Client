@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -62,8 +64,9 @@ public class KakaoService {
         System.out.println("access_Token = " + access_Token);
         return access_Token;
     }
-    public String getKakaoUser(String token) {
-        String jwt = "";
+    public List<String> getKakaoUser(String token) {
+        List<String> jwt = new ArrayList<>();
+        List<String> lists = new ArrayList<>();
         try{
             URL url = new URL("https://kapi.kakao.com/v2/user/me");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -95,11 +98,11 @@ public class KakaoService {
         }
         return jwt;
     }
-    private String validationUser(String email,String nickname){
+    private List<String> validationUser(String email, String nickname){
         User user = new User();
         user.setEmail(email);
         user.setNickname(nickname);
-        String token = userService.validationDupUser(user);
-        return token;
+        List<String> data = userService.validationDupUser(user);
+        return data;
     }
 }

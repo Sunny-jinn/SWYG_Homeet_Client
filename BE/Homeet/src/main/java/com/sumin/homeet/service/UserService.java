@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,16 +24,19 @@ public class UserService {
     }
 
     @Transactional
-    public String validationDupUser(User user) {
+    public List<String> validationDupUser(User user) {
         User users = userRepository.findByEmail(user.getEmail());
+        List<String> lists = new ArrayList<>();
         String msg="";
+        Long userId=0L;
         //예외처리 수정 필요
         try{
             if (users != null){
                 msg = "User exists";
+                userId = users.getId();
             }
             else{
-                Long user_id = register(user);
+                userId = register(user);
                 msg = "register complete";
             }
 
@@ -41,7 +45,9 @@ public class UserService {
         }
         String token = jwtService.createToken(user);
         System.out.println("userService token = " + token);
-        return token;
+        lists.add(token);
+        lists.add(userId.toString());
+        return lists;
     }
     public User findOne(Long userId){return userRepository.findById(userId).get();}
     public User findOneByEmail(String email){
