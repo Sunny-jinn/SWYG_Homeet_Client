@@ -5,14 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class YearRoomDto {
+@NoArgsConstructor
+public class NoteForRoomDto {
     private Long id;
-    private boolean duplex;
     private String location;
-    private int yearPrice;
     private String content;
+    private Boolean duplex;
 }

@@ -1,18 +1,22 @@
 package com.sumin.homeet.dto;
 
+import com.sumin.homeet.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class YearRoomDto {
+@NoArgsConstructor
+public class NoteSendRecvDto {
     private Long id;
-    private boolean duplex;
-    private String location;
-    private int yearPrice;
     private String content;
+    private Long receiverId;
+    private LocalDateTime createDate;
+    private Long senderId;
+
 }

@@ -7,12 +7,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class YearRoomDto {
-    private Long id;
-    private boolean duplex;
-    private String location;
-    private int yearPrice;
+@NoArgsConstructor
+public class ReqNoteDto {
     private String content;
+    private Long sendUserId; //쪽지 보낸 사람id
+    private Long receiverId; //받는 사람id
+    private Long roomId; //방 id
 }

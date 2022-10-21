@@ -1,10 +1,11 @@
 package com.sumin.homeet.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDto {
     String email;
     String nickname;
