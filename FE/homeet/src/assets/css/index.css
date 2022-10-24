@@ -1,9 +1,34 @@
-/* .m-240 {
-  margin: 0px 240px;
-} */
+header {
+  background-color: #4e4981;
+  /* background: linear-gradient(170deg, #fff, #4e4981, #4e4981); */
+  padding: 25px;
+  padding-right: 240px;
+  padding-left: 240px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.m-360 {
+  margin: 0 auto;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
+.w-100 {
+  width: 100%;
+}
 
 .flex {
   display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .relative {
@@ -22,12 +47,8 @@
   vertical-align: middle;
 }
 
-header {
-  background-color: #4e4981;
-  /* background: linear-gradient(170deg, #fff, #4e4981, #4e4981); */
-  padding: 25px;
-  padding-right: 240px;
-  padding-left: 240px;
+.none {
+  display: none;
 }
 
 .input-box {
@@ -36,6 +57,14 @@ header {
   width: 947px;
   height: 90px;
 }
+@media (max-width: 1200px) {
+  header {
+    padding: 25px;
+  }
+  .input-box {
+    width: 100%;
+  }
+}
 
 .input {
   width: 100%;
@@ -43,7 +72,7 @@ header {
   padding: 20px;
   box-sizing: border-box;
   font-size: 30px;
-  border-radius: 22px;
+  border-radius: 18px;
   border: 0.5px solid;
 }
 
@@ -79,3 +108,100 @@ header {
 .header-nav li {
   margin-left: 30px;
 }
+
+/*-----------------------------*/
+
+.category-container {
+  width: 100%;
+  margin: 50px 0 30px 0;
+}
+
+.category {
+  width: 1200px;
+  justify-content: space-between;
+}
+
+@media (max-width: 1200px) {
+  .category {
+    width: 800px;
+  }
+}
+
+.category-location {
+  position: relative;
+  width: 464px;
+  height: 50px;
+}
+
+.category-location input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+  padding: 10px;
+}
+
+.category-location img {
+  position: absolute;
+  width: 30px;
+  top: 10px;
+  right: 10px;
+}
+
+.category-center {
+  margin-left: 80px;
+}
+
+.category-price {
+  width: 330px;
+  height: 50px;
+}
+
+.category-price input {
+  width: 160px;
+  height: 100%;
+  padding: 10px;
+  margin-right: 20px;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+}
+
+.category-right {
+  margin-left: 36px;
+  width: 286px;
+  height: 50px;
+}
+
+.category-d {
+  width: 100%;
+}
+
+.category-d img {
+  position: absolute;
+  right: 10px;
+  top: 17px;
+  width: 15px;
+}
+
+.category-duplex,
+.category-dtype {
+  width: 132px;
+  height: 50px;
+}
+
+.category-duplex select,
+.category-dtype select {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  font-size: 1.25rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  appearance: none;
+}
+
+.category-dtype {
+  margin-left: 20px;
+}
+
+/*132.7; */
