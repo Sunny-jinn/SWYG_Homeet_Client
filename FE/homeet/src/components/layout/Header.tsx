@@ -11,6 +11,7 @@ const Header = (): JSX.Element => {
       <nav className="header-nav vertical-mid inline-block right">
         <ul className="flex">
           <li>로그인</li>
+          <li>등록하기</li>
         </ul>
       </nav>
     </header>

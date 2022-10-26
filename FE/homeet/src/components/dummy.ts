@@ -26,7 +26,7 @@ export const DUMMY_DATA: IRoom[] = [
     dtype: "전세",
     duplex: true,
     location: "경기도 수원시 영통구",
-    imageUrl: [room],
+    imageUrl: [room, room, room, room],
     yearPrice: 120000000,
   },
   {
