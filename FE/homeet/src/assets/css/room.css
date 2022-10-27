@@ -123,3 +123,71 @@ p {
   margin-top: 30px;
   margin-bottom: 80px;
 }
+
+.room-register {
+  width: 100%;
+}
+
+.room-register p {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.room-register-container {
+  width: 1200px;
+  margin-top: 70px;
+}
+
+.room-register-right,
+.room-register-left {
+  width: 600px;
+  padding: 0 35px;
+  box-sizing: border-box;
+}
+
+.room-register-imgs {
+  width: 530px;
+  height: 300px;
+  border-radius: 28px;
+  align-items: center;
+  justify-content: center;
+  background: rgb(237, 237, 237);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.room-register-imgs:hover {
+  background: rgb(196, 196, 196);
+  transition: 0.2s;
+}
+
+.room-register-imgs img {
+  width: 125px;
+  filter: invert(84%) sepia(0%) saturate(0%) hue-rotate(202deg) brightness(91%)
+    contrast(92%);
+}
+.room-register-imgs:hover img {
+  filter: invert(0%) sepia(82%) saturate(7485%) hue-rotate(92deg)
+    brightness(103%) contrast(96%);
+}
+
+.room-register-info {
+  width: 530px;
+  margin-bottom: 40px;
+}
+
+.room-register-radio .room-register-info {
+  margin: 60px 0;
+}
+
+.room-register-radio p {
+  margin: 0;
+}
+
+.room-register input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  height: 50px;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+}

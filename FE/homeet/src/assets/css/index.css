@@ -11,6 +11,10 @@ a {
   color: inherit;
 }
 
+li {
+  cursor: pointer;
+}
+
 .m-360 {
   margin: 0 auto;
 }

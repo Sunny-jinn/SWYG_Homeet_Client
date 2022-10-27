@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { DUMMY_DATA, IRoom } from "../dummy";
 import RoomMap from "./RoomMap";
@@ -6,18 +5,6 @@ import RoomMap from "./RoomMap";
 interface IProps {
   roomId: string;
 }
-
-/* export interface IRoom {
-  room_id: number;
-  user_id: string;
-  dtype: string; // 월세 M, 전세 Y
-  duplex: boolean;
-  location: string;
-  image_url: string;
-  one_price?: number;
-  per_price?: number;
-  year_price?: number;
-}*/
 
 const RoomDetail = ({ roomId }: IProps) => {
   const [room, setRoom] = useState<IRoom>();

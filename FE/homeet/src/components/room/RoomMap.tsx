@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const kakao = (window as any).kakao;
 
-const RoomMap = () => {
+const RoomMap = (): JSX.Element => {
   useEffect(() => {
     const container = document.getElementById("map");
     const options = {
