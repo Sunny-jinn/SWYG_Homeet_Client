@@ -94,6 +94,7 @@ li {
 }
 
 .header-logo img {
+  cursor: pointer;
   width: 120px;
 }
 
@@ -208,4 +209,21 @@ li {
   margin-left: 20px;
 }
 
-/*132.7; */
+.loading {
+  width: 300px;
+  margin: 100px auto;
+}
+
+@keyframes blinkImage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.loading img {
+  width: 100%;
+  animation: blinkImage 0.7s ease-in-out infinite alternate;
+}

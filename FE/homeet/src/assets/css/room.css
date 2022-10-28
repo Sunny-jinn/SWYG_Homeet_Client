@@ -191,3 +191,45 @@ p {
   box-sizing: border-box;
   font-size: 1.25rem;
 }
+
+.room-register-thumbimgs {
+  margin-top: 30px;
+  width: 530px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.room-register-thumbimgs-list {
+  margin-bottom: 20px;
+  width: 120px;
+  height: 90px;
+}
+
+.room-register-thumbimgs img {
+  width: 120px;
+  height: 90px;
+}
+
+.room-register-button {
+  width: 530px;
+}
+.room-register-button button {
+  border: 0;
+  transition: 0.2s;
+
+  border-radius: 5px;
+  cursor: pointer;
+  background: #4e4981;
+  width: 150px;
+  height: 50px;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 600;
+  float: right;
+}
+
+.room-register-button button:hover {
+  transition: 0.2s;
+  background: #655fa7;
+  transform: translateY(-2px);
+}

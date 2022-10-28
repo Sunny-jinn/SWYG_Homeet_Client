@@ -6,19 +6,28 @@ import whiteLogo from "../../assets/img/icon_white.png";
 const Header = (): JSX.Element => {
   const navigate = useNavigate();
 
-  const clickHandler = () => {
+  const logoClickHandler = () => {
+    navigate("/");
+  };
+
+  const profileClickHandler = () => {
+    navigate("/profile");
+  };
+
+  const registerClickHandler = () => {
     navigate("/room/register");
   };
 
   return (
     <header className="m-240">
       <div className="header-logo vertical-mid">
-        <img src={whiteLogo} alt="logo" />
+        <img onClick={logoClickHandler} src={whiteLogo} alt="logo" />
       </div>
       <nav className="header-nav vertical-mid inline-block right">
         <ul className="flex">
           <li>로그인</li>
-          <li onClick={clickHandler}>등록하기</li>
+          <li onClick={profileClickHandler}>내 정보</li>
+          <li onClick={registerClickHandler}>등록하기</li>
         </ul>
       </nav>
     </header>

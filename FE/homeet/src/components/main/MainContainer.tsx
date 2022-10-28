@@ -10,9 +10,6 @@ const MainContainer = () => {
   return (
     <div>
       <MainInput />
-      <a href={KAKAO_URL}>
-        <button>카카오</button>
-      </a>
     </div>
   );
 };

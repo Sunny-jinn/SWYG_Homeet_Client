@@ -1,12 +1,22 @@
+import { listenerCount } from "process";
 import React, { ChangeEvent, useState } from "react";
 import uploadLogo from "../../assets/svg/image_upload.svg";
 
 const RoomRegister = (): JSX.Element => {
   const [dtype, setDtype] = useState<string>("월세");
-  const [roomImg, setRoomImg] = useState<Array<any>>([]);
+  const [roomImg, setRoomImg] = useState<any>([]);
+  const [imageUrl, setImageUrl] = useState<any>([]);
 
-  const imageChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target?.value);
+  const imageChangeHandler = (e: any) => {
+    const formData = new FormData();
+    for (let i = 0; i < e.target.files.length; i++) {
+      formData.append("images", e.target.files[i]);
+      setImageUrl((imageUrl: any) => [
+        ...imageUrl,
+        URL.createObjectURL(e.target.files[i]),
+      ]);
+    }
+    setRoomImg(formData);
   };
 
   const dtypeChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -17,21 +27,30 @@ const RoomRegister = (): JSX.Element => {
     <div className="room-register">
       <div className="room-register-container m-360 flex">
         <div className="room-register-left">
-          <p>방 사진</p>
-          <label htmlFor="image">
-            <div className="room-register-imgs flex">
-              <div>
-                <input
-                  id="image"
-                  type="file"
-                  multiple
-                  style={{ display: "none" }}
-                  onChange={imageChangeHandler}
-                />
-                <img src={uploadLogo} alt="이미지 업로드" />
+          <>
+            <p>방 사진</p>
+            <label htmlFor="image">
+              <div className="room-register-imgs flex">
+                <div>
+                  <input
+                    id="image"
+                    type="file"
+                    multiple
+                    style={{ display: "none" }}
+                    onChange={imageChangeHandler}
+                  />
+                  <img src={uploadLogo} alt="이미지 업로드" />
+                </div>
               </div>
-            </div>
-          </label>
+            </label>
+          </>
+          <div className="room-register-thumbimgs flex">
+            {imageUrl.map((list: any, key: any) => (
+              <div key={key} className="room-register-thumbimgs-list">
+                <img src={list} />
+              </div>
+            ))}
+          </div>
         </div>
         <div className="room-register-right">
           <div className="room-register-info">
@@ -80,6 +99,9 @@ const RoomRegister = (): JSX.Element => {
               </div>
             </>
           )}
+          <div className="room-register-button">
+            <button>등록하기</button>
+          </div>
         </div>
       </div>
     </div>
