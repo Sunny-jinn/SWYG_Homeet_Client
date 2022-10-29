@@ -5,6 +5,8 @@ import Search from "./pages/Search";
 
 import "./assets/css/index.css";
 import "./assets/css/room.css";
+import "./assets/css/profile.css";
+import "./assets/css/note.css";
 import Room from "./pages/Room";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";

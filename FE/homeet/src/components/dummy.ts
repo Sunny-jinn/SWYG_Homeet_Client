@@ -19,6 +19,25 @@ export interface IUser {
   userId: number;
 }
 
+export interface INote {
+  id: number;
+  content: string;
+  receiverId: number;
+  createDate: string;
+  senderId: number;
+}
+
+export interface INoteDto {
+  id: number;
+  location: string;
+  duplex: boolean;
+}
+
+export interface INoteData {
+  noteList: INote[];
+  noteForRoomDto: INoteDto;
+}
+
 export const DUMMY_DATA: IRoom[] = [
   {
     room_id: 0,
@@ -68,5 +87,61 @@ export const DUMMY_DATA: IRoom[] = [
     onePrice: 600000,
     imageUrl: [room],
     perPrice: 10000000,
+  },
+];
+
+export const DUMMY_NOTE: Array<INoteData> = [
+  {
+    noteList: [
+      {
+        id: 1,
+        content: "처음안녕하세요",
+        receiverId: 1,
+        createDate: "2022-10-21T00:21:15",
+        senderId: 2,
+      },
+      {
+        id: 2,
+        content: "나중안녕하세요",
+        receiverId: 2,
+        createDate: "2022-10-21T00:21:17",
+        senderId: 1,
+      },
+      {
+        id: 3,
+        content: "마지막안녕하세요",
+        receiverId: 1,
+        createDate: "2022-10-23T00:21:30",
+        senderId: 2,
+      },
+    ],
+    noteForRoomDto: {
+      id: 1,
+      location: "경기도 수원시 영통구 영통동",
+      duplex: true,
+    },
+  },
+  {
+    noteList: [
+      {
+        id: 1,
+        content: "Hello",
+        receiverId: 1,
+        createDate: "2022-10-21T00:21:15",
+        senderId: 2,
+      },
+      {
+        id: 2,
+        content: "Goodbye",
+        receiverId: 2,
+        createDate: "2022-10-21T00:21:17",
+        senderId: 1,
+      },
+    ],
+    noteForRoomDto: {
+      id: 2,
+      location: "경기도 안양시 동안구",
+      duplex: false,
+    },
   },
 ];
