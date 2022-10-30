@@ -1,0 +1,62 @@
+.profile {
+  margin-top: 100px;
+  width: 1200px;
+}
+
+.profile-left {
+  width: 395px;
+}
+
+.profile-logo {
+  width: 100%;
+}
+
+.profile-info {
+  width: 250px;
+  margin-left: 88px;
+}
+
+.profile-info-title {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.profile-info-text {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+}
+
+.profile-info-note,
+.profile-info-list {
+  margin-top: 25px;
+}
+
+.profile-info-note,
+.profile-info-list {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.checked {
+  color: black;
+}
+
+.profile-right {
+  width: 805px;
+}
+
+.profile-note p,
+.profile-roomlist p {
+  margin: 0;
+}
+
+.profile-note-container,
+.profile-roomlist-container {
+  margin-top: 30px;
+  width: 805px;
+  height: 500px;
+  border: 1px solid rgb(172, 172, 172);
+}
+
+.profile-note-list {
+  height: 100%;
+}
