@@ -30,19 +30,132 @@
 
 .note-container {
   position: absolute;
-  width: 100vh;
-  height: 100vh;
+  width: 100vw;
+  height: 100vw;
+  top: calc(-50vw + 50%);
+  left: calc(-50vw + 50%);
+  display: flex;
+  justify-content: center;
   background: rgba(91, 91, 91, 0.159);
 }
 
-.note-content {
+.note-contents {
   position: fixed;
-  right: 0;
-  bottom: 0;
-  width: 500px;
-  height: 500px;
-
+  top: 30%;
+  width: 650px;
+  height: 750px;
+  border-radius: 20px;
   background: rgb(255, 255, 255);
-
   z-index: 999;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.note-contents-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(187, 187, 187, 0.682);
+  margin-bottom: 30px;
+}
+
+.note-contents-list {
+  width: 100%;
+  border: 1px solid rgba(163, 163, 163, 0.467);
+  border-radius: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  height: 73%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.note-content {
+  height: 100%;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.note-right {
+  justify-content: right;
+}
+
+.note-left {
+  justify-content: left;
+}
+
+.note-content-text-right {
+  padding: 12px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 255, 0.407);
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.note-content-text-left {
+  padding: 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+  background: rgb(172, 172, 172);
+}
+.note-content-date-right {
+  width: 150px;
+  display: flex;
+  justify-content: right;
+  margin: 0 5px;
+  font-size: 0.75rem;
+  color: rgb(172, 172, 172);
+  vertical-align: text-bottom;
+}
+.note-content-date-left {
+  vertical-align: bottom;
+  width: 150px;
+  margin: 0 5px;
+  font-size: 0.75rem;
+  color: rgb(172, 172, 172);
+}
+
+.align-bottom {
+  position: absolute;
+  margin-left: 5px;
+  bottom: 0;
+}
+
+.note-contents-new {
+  position: fixed;
+  top: 30%;
+  width: 550px;
+  height: 450px;
+  border-radius: 20px;
+  background: rgb(255, 255, 255);
+  z-index: 999;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.note-contents-new textarea {
+  width: 100%;
+  height: 300px;
+  resize: none;
+  font-size: 2rem;
+}
+
+.note-button {
+  margin-top: 50px;
+}
+
+.note-button button {
+  float: right;
+  cursor: pointer;
+  border: 0;
+  margin-top: -2px;
+  padding: 10px 30px;
+  height: 50px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 5px;
+  background: #4e4981;
+  color: white;
 }

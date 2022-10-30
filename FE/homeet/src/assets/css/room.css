@@ -114,6 +114,18 @@ p {
   padding-top: 2.5px;
   box-sizing: border-box;
 }
+.room-detail-info-text button {
+  cursor: pointer;
+  border: 1px solid #4e4981;
+  margin-top: -2px;
+  width: 120px;
+  height: 30px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  border-radius: 5px;
+  background: #fff;
+  color: #4e4981;
+}
 
 .room-detail-location {
   margin-top: 80px;
