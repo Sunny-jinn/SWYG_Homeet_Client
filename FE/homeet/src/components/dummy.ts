@@ -112,13 +112,52 @@ export const DUMMY_NOTE: Array<INoteData> = [
       },
       {
         id: 2,
-        content: "나중 안녕하세요",
+        content:
+          "처음 안녕하세요 처음 안녕하세요 처음 안녕하세요 처음 안녕하세요",
+        receiverId: 1,
+        createDate: "2022-10-21T00:21:15",
+        senderId: 2,
+      },
+      {
+        id: 3,
+        content:
+          "나중 안녕하세요 나중 안녕하세요 나중 안녕하세요 나중 안녕하세요 나중 안녕하세요 ",
         receiverId: 2,
         createDate: "2022-10-21T00:21:17",
         senderId: 1,
       },
       {
+        id: 4,
+        content: "마지막 안녕하세요",
+        receiverId: 1,
+        createDate: "2022-10-23T00:21:30",
+        senderId: 2,
+      },
+      {
         id: 3,
+        content:
+          "나중 안녕하세요 나중 안녕하세요 나중 안녕하세요 나중 안녕하세요 나중 안녕하세요 ",
+        receiverId: 2,
+        createDate: "2022-10-21T00:21:17",
+        senderId: 1,
+      },
+      {
+        id: 4,
+        content: "마지막 안녕하세요",
+        receiverId: 1,
+        createDate: "2022-10-23T00:21:30",
+        senderId: 2,
+      },
+      {
+        id: 3,
+        content:
+          "나중 안녕하세요 나중 안녕하세요 나중 안녕하세요 나중 안녕하세요 나중 안녕하세요 ",
+        receiverId: 2,
+        createDate: "2022-10-21T00:21:17",
+        senderId: 1,
+      },
+      {
+        id: 4,
         content: "마지막 안녕하세요",
         receiverId: 1,
         createDate: "2022-10-23T00:21:30",
@@ -127,7 +166,7 @@ export const DUMMY_NOTE: Array<INoteData> = [
     ],
     noteForRoomDto: {
       id: 1,
-      location: "경기도 수원시 영통구 영통동",
+      location: "경기도 수원시 영통구 청명로 43번길 15",
       duplex: true,
     },
   },
@@ -150,7 +189,7 @@ export const DUMMY_NOTE: Array<INoteData> = [
     ],
     noteForRoomDto: {
       id: 2,
-      location: "경기도 안양시 동안구",
+      location: "경기도 안양시 동안구 경수대로 883번길 33",
       duplex: false,
     },
   },

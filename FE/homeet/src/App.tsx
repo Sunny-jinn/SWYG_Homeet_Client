@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Search from "./pages/Search";
-
+import "./App.css";
 import "./assets/css/index.css";
 import "./assets/css/room.css";
 import "./assets/css/profile.css";

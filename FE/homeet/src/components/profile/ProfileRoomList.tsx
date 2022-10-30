@@ -11,30 +11,28 @@ const ProfileRoomList = () => {
       <div className="profile-note-container">
         <div className="profile-note-list">
           {DUMMY_DATA.map((list: IRoom, index: number) => (
-            <>
-              <div
-                key={index}
-                className="note-item"
-                onClick={() => {
-                  navigate(`/room/detail/${list.room_id}`);
-                }}
-              >
-                <p>
-                  {list.dtype}{" "}
-                  {list.dtype === "전세" ? (
-                    <>{list.yearPrice.toLocaleString()}</>
-                  ) : (
-                    <>
-                      {list.perPrice.toLocaleString()}
-                      {" / "}
-                      {list.onePrice.toLocaleString()}
-                    </>
-                  )}{" "}
-                </p>
+            <div
+              key={index}
+              className="note-item"
+              onClick={() => {
+                navigate(`/room/detail/${list.room_id}`);
+              }}
+            >
+              <p>
+                {list.dtype}{" "}
+                {list.dtype === "전세" ? (
+                  <>{list.yearPrice.toLocaleString()}</>
+                ) : (
+                  <>
+                    {list.perPrice.toLocaleString()}
+                    {" / "}
+                    {list.onePrice.toLocaleString()}
+                  </>
+                )}{" "}
+              </p>
 
-                <div className="note-text">{list.location}</div>
-              </div>
-            </>
+              <div className="note-text">{list.location}</div>
+            </div>
           ))}
         </div>
       </div>
