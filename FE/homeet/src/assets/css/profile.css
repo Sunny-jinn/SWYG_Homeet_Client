@@ -21,6 +21,10 @@
   margin-bottom: 8px;
 }
 
+.point {
+  cursor: pointer;
+}
+
 .profile-info-text {
   font-size: 1.25rem;
   margin-bottom: 16px;
@@ -53,10 +57,12 @@
 .profile-roomlist-container {
   margin-top: 30px;
   width: 805px;
-  height: 500px;
+  height: 550px;
   border: 1px solid rgb(172, 172, 172);
 }
 
 .profile-note-list {
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }

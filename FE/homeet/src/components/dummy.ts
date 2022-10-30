@@ -88,6 +88,16 @@ export const DUMMY_DATA: IRoom[] = [
     imageUrl: [room],
     perPrice: 10000000,
   },
+  {
+    room_id: 5,
+    user_id: "sunho",
+    dtype: "월세",
+    duplex: false,
+    location: "서울특별시 여의도",
+    onePrice: 450000,
+    imageUrl: [room],
+    perPrice: 10000000,
+  },
 ];
 
 export const DUMMY_NOTE: Array<INoteData> = [

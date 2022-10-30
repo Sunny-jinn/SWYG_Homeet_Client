@@ -31,7 +31,9 @@ const ProfileContainer = () => {
             onClick={() => clickHandler("note")}
           >
             <div
-              className={"profile-info-title " + (view === "note" && "checked")}
+              className={
+                "profile-info-title point " + (view === "note" && "checked")
+              }
             >
               쪽지함
             </div>
@@ -42,7 +44,7 @@ const ProfileContainer = () => {
           >
             <div
               className={
-                "profile-info-title " + (view === "list" && " checked")
+                "profile-info-title point " + (view === "list" && " checked")
               }
             >
               내가 쓴 글
