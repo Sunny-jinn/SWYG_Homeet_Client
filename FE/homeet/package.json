@@ -44,5 +44,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://green-reviewer.herokuapp.com"
+  "proxy": "https://green-reviewer.herokuapp.com",
+  "devDependencies": {
+    "@types/navermaps": "^3.0.17"
+  }
 }

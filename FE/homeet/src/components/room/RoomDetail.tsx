@@ -80,7 +80,7 @@ const RoomDetail = ({ roomId }: IProps) => {
         <div className="room-detail-location">
           <p>위치</p>
           <div className="room-detail-map">
-            <RoomMap />
+            <RoomMap location={room?.location} />
           </div>
         </div>
       </div>

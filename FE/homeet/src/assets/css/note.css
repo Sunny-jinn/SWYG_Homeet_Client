@@ -35,14 +35,41 @@
   background: rgba(91, 91, 91, 0.159);
 }
 
-.note-content {
+.note-contents {
   position: fixed;
   right: 0;
   bottom: 0;
   width: 500px;
   height: 500px;
-
   background: rgb(255, 255, 255);
-
   z-index: 999;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.note-content {
+  width: 100%;
+}
+
+.note-right {
+  justify-content: right;
+}
+
+.note-left {
+  justify-content: left;
+}
+
+.note-content-text-right {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 255, 0.407);
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.note-content-text-left {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  background: rgb(172, 172, 172);
 }
