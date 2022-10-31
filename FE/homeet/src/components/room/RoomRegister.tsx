@@ -1,14 +1,57 @@
-import { listenerCount } from "process";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import React, { ChangeEvent, useState } from "react";
+import { useRef } from "react";
+import { useSelector } from "react-redux";
 import uploadLogo from "../../assets/svg/image_upload.svg";
 
 const RoomRegister = (): JSX.Element => {
   const [dtype, setDtype] = useState<string>("월세");
+  const [duplex, setDuplex] = useState<string>("단층");
   const [roomImg, setRoomImg] = useState<any>([]);
   const [imageUrl, setImageUrl] = useState<any>([]);
+  const token = useSelector((state: any) => state.user.token);
+
+  const locationRef = useRef(null);
+  const formData = new FormData();
+
+  const perRef = useRef(null);
+  const oneRef = useRef(null);
+  const yearRef = useRef(null);
+
+  const clickHandler = () => {
+    console.log(locationRef.current?.value);
+    console.log(perRef.current?.value);
+    console.log(oneRef.current?.value);
+    console.log(yearRef.current?.value);
+    console.log(duplex);
+    console.log(dtype);
+    console.log(roomImg);
+    formData.append("dtype", dtype === "전세" ? "Y" : "M");
+    formData.append("location", locationRef.current?.value);
+    formData.append("content", " ");
+    formData.append("duplex", duplex);
+    formData.append("onePrice", oneRef.current?.value);
+    formData.append("perPrice", perRef.current?.value);
+    formData.append("yearPrice", yearRef.current?.value);
+
+    axios
+      .post(
+        `http://172.20.10.9:8000/room/register`,
+        {
+          data: formData,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "X-AUTH-TOKEN": token,
+          },
+        }
+      )
+      .then((res: AxiosResponse) => console.log(res))
+      .catch((err: AxiosError) => console.log(err));
+  };
 
   const imageChangeHandler = (e: any) => {
-    const formData = new FormData();
     for (let i = 0; i < e.target.files.length; i++) {
       formData.append("images", e.target.files[i]);
       setImageUrl((imageUrl: any) => [
@@ -21,6 +64,10 @@ const RoomRegister = (): JSX.Element => {
 
   const dtypeChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setDtype(e.target?.value);
+  };
+
+  const duplexChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setDuplex(e.target?.value);
   };
 
   return (
@@ -55,14 +102,25 @@ const RoomRegister = (): JSX.Element => {
         <div className="room-register-right">
           <div className="room-register-info">
             <p>주소</p>
-            <input type="text" />
+            <input ref={locationRef} type="text" />
           </div>
           <div className="room-register-radio">
             <div className="room-register-info flex">
               <p>단층</p>
-              <input type="radio" name="duplex" value="단층" defaultChecked />
+              <input
+                type="radio"
+                name="duplex"
+                value="단층"
+                onChange={duplexChangeHandler}
+                defaultChecked
+              />
               <p>복층</p>
-              <input type="radio" name="duplex" value="복층" />
+              <input
+                type="radio"
+                name="duplex"
+                value="복층"
+                onChange={duplexChangeHandler}
+              />
             </div>
             <div className="room-register-info flex ">
               <p>월세</p>
@@ -85,22 +143,22 @@ const RoomRegister = (): JSX.Element => {
           {dtype === "전세" ? (
             <div className="room-register-info">
               <p>전세 가격</p>
-              <input type="text" />
+              <input ref={yearRef} type="text" />
             </div>
           ) : (
             <>
               <div className="room-register-info">
                 <p>보증금 가격</p>
-                <input type="text" />
+                <input ref={perRef} type="text" />
               </div>
               <div className="room-register-info">
                 <p>월세 가격</p>
-                <input type="text" />
+                <input ref={oneRef} type="text" />
               </div>
             </>
           )}
           <div className="room-register-button">
-            <button>등록하기</button>
+            <button onClick={clickHandler}>등록하기</button>
           </div>
         </div>
       </div>

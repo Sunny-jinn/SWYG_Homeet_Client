@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/modal";
-import { DUMMY_DATA, IRoom } from "../dummy";
+import { IRoom } from "../../store/room";
 import NoteNew from "../note/NoteNew";
 import RoomMap from "./RoomMap";
 
@@ -12,11 +12,12 @@ interface IProps {
 const RoomDetail = ({ roomId }: IProps) => {
   const [room, setRoom] = useState<IRoom>();
   const dispatch = useDispatch();
+  const roomList = useSelector((state: any) => state.room.roomList);
   const isNewModal = useSelector((state: any) => state.modal.isNewModal);
   dispatch(modalActions.setIsModal(false));
 
   useEffect(() => {
-    const tempList: any = DUMMY_DATA.filter(
+    const tempList: any = roomList.filter(
       (list: IRoom) => list.room_id === Number(roomId)
     );
     setRoom(tempList[0]);

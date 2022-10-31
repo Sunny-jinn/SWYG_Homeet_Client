@@ -8,6 +8,7 @@ import NoteNew from "../note/NoteNew";
 const ProfileNote = () => {
   const isModal = useSelector((state: any) => state.modal.isModal);
   const [note, setNote] = useState<INoteData>();
+  const allNoteList = useSelector((state: any) => state.note.allNoteList);
   const isNewModal = useSelector((state: any) => state.modal.isNewModal);
 
   return (
@@ -19,7 +20,7 @@ const ProfileNote = () => {
         <p>쪽지함</p>
         <div className="profile-note-container">
           <div className="profile-note-list">
-            {DUMMY_NOTE.map((list: INoteData, index: number) => (
+            {allNoteList.map((list: INoteData, index: number) => (
               <NoteList list={list} index={index} setNote={setNote} />
             ))}
           </div>
