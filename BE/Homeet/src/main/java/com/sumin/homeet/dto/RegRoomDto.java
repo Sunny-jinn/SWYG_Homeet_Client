@@ -19,5 +19,5 @@ public class RegRoomDto {
     private int onePrice;
     private int perPrice;
     private int yearPrice;
-    private UserDto user;
+//    private UserDto user;
 }

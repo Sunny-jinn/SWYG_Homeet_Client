@@ -29,24 +29,31 @@ public class UserService {
         List<String> lists = new ArrayList<>();
         String msg="";
         Long userId=0L;
+        String token = "";
+        String nickname = "";
         //예외처리 수정 필요
         try{
             if (users != null){
                 msg = "User exists";
+                System.out.println("users = " + users);
                 userId = users.getId();
+                nickname= users.getNickname();
+                System.out.println("userId = " + userId);
+                token = jwtService.createToken(users);
             }
             else{
                 userId = register(user);
                 msg = "register complete";
+                nickname=user.getNickname();
+                token = jwtService.createToken(user);
             }
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        String token = jwtService.createToken(user);
-        System.out.println("userService token = " + token);
         lists.add(token);
         lists.add(userId.toString());
+        lists.add(nickname);
         return lists;
     }
     public User findOne(Long userId){return userRepository.findById(userId).get();}
