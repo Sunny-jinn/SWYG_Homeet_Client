@@ -1,11 +1,13 @@
-import React, { useRef } from "react";
-import { DUMMY_DATA, IRoom } from "../dummy";
+import { useSelector } from "react-redux";
+import { IRoom } from "../../store/room";
 import RoomCard from "../room/RoomCard";
 
 const SearchContainer = () => {
+  const roomList = useSelector((state: any) => state.room.roomList);
+
   return (
     <div className="flex wrap m-360 room-container">
-      {DUMMY_DATA.map((list: IRoom, index: number) => (
+      {roomList.map((list: IRoom, index: number) => (
         <RoomCard
           key={index}
           room_id={list.room_id}

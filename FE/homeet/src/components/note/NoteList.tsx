@@ -6,7 +6,6 @@ import { INoteData } from "../dummy";
 interface IProps {
   index: number;
   list: INoteData;
-
   setNote: Dispatch<SetStateAction<INoteData>>;
 }
 

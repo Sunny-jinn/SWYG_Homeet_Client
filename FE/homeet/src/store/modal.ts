@@ -5,7 +5,7 @@ export interface IModal {
   isNewModal: boolean;
 }
 
-const modalSlice = createSlice({
+export const modalSlice = createSlice({
   name: "modal",
   initialState: {
     isModal: false,
@@ -21,11 +21,4 @@ const modalSlice = createSlice({
   },
 });
 
-const store = configureStore({
-  reducer: {
-    modal: modalSlice.reducer,
-  },
-});
-
 export const modalActions = modalSlice.actions;
-export default store;

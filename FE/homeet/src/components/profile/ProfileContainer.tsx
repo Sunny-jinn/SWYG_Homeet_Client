@@ -8,7 +8,6 @@ const ProfileContainer = () => {
 
   const clickHandler = (curView: string) => {
     setView(curView);
-    console.log(view);
   };
 
   return (
