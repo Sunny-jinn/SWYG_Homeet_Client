@@ -1,8 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import React, { ChangeEvent, useState } from "react";
 import { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import uploadLogo from "../../assets/svg/image_upload.svg";
+import { roomActions } from "../../store/room";
 
 const RoomRegister = (): JSX.Element => {
   const [dtype, setDtype] = useState<string>("월세");
@@ -10,6 +12,10 @@ const RoomRegister = (): JSX.Element => {
   const [roomImg, setRoomImg] = useState<any>([]);
   const [imageUrl, setImageUrl] = useState<any>([]);
   const token = useSelector((state: any) => state.user.token);
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const locationRef = useRef(null);
   const formData = new FormData();
@@ -33,22 +39,36 @@ const RoomRegister = (): JSX.Element => {
     formData.append("onePrice", oneRef.current?.value);
     formData.append("perPrice", perRef.current?.value);
     formData.append("yearPrice", yearRef.current?.value);
+    const randomId = Math.floor(Math.random() * 100000) + 1;
 
-    axios
-      .post(
-        `http://172.20.10.9:8000/room/register`,
-        {
-          data: formData,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "X-AUTH-TOKEN": token,
-          },
-        }
-      )
-      .then((res: AxiosResponse) => console.log(res))
-      .catch((err: AxiosError) => console.log(err));
+    // axios
+    //   .post(
+    //     `http://172.20.10.9:8000/room/register`,
+    //     {
+    //       data: formData,
+    //     },
+    //     {
+    //       headers: {
+    //         "Content-Type": "multipart/form-data",
+    //         "X-AUTH-TOKEN": token,
+    //       },
+    //     }
+    //   )
+    //   .then((res: AxiosResponse) => console.log(res))
+    //   .catch((err: AxiosError) => console.log(err));
+    dispatch(
+      roomActions.setRoomList({
+        room_id: randomId,
+        user_id: "sunny",
+        dtype: dtype,
+        duplex: duplex,
+        location: locationRef.current?.value,
+        onePrice: oneRef.current?.value,
+        imageUrl: roomImg,
+        perPrice: perRef.current?.value,
+      })
+    );
+    navigate(`/room/detail/${randomId}`);
   };
 
   const imageChangeHandler = (e: any) => {

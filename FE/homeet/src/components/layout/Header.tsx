@@ -26,9 +26,9 @@ const Header = (): JSX.Element => {
       </div>
       <nav className="header-nav vertical-mid inline-block right">
         <ul className="flex">
-          <a href={KAKAO_AUTH_URL}>
+          {/* <a href={KAKAO_AUTH_URL}>
             <li>로그인</li>
-          </a>
+          </a> */}
           <li onClick={profileClickHandler}>내 정보</li>
           <li onClick={registerClickHandler}>등록하기</li>
         </ul>
