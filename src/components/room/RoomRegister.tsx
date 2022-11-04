@@ -41,34 +41,34 @@ const RoomRegister = (): JSX.Element => {
     formData.append("yearPrice", yearRef.current?.value);
     const randomId = Math.floor(Math.random() * 100000) + 1;
 
-    // axios
-    //   .post(
-    //     `http://172.20.10.9:8000/room/register`,
-    //     {
-    //       data: formData,
-    //     },
-    //     {
-    //       headers: {
-    //         "Content-Type": "multipart/form-data",
-    //         "X-AUTH-TOKEN": token,
-    //       },
-    //     }
-    //   )
-    //   .then((res: AxiosResponse) => console.log(res))
-    //   .catch((err: AxiosError) => console.log(err));
-    dispatch(
-      roomActions.setRoomList({
-        room_id: randomId,
-        user_id: "sunny",
-        dtype: dtype,
-        duplex: duplex,
-        location: locationRef.current?.value,
-        onePrice: oneRef.current?.value,
-        imageUrl: roomImg,
-        perPrice: perRef.current?.value,
-      })
-    );
-    navigate(`/room/detail/${randomId}`);
+    axios
+      .post(
+        `${process.env.REACT_APP_PORT}/room/register`,
+        {
+          data: formData,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "X-AUTH-TOKEN": token,
+          },
+        }
+      )
+      .then((res: AxiosResponse) => console.log(res))
+      .catch((err: AxiosError) => console.log(err));
+    // dispatch(
+    //   roomActions.setRoomList({
+    //     room_id: randomId,
+    //     user_id: "sunny",
+    //     dtype: dtype,
+    //     duplex: duplex,
+    //     location: locationRef.current?.value,
+    //     onePrice: oneRef.current?.value,
+    //     imageUrl: roomImg,
+    //     perPrice: perRef.current?.value,
+    //   })
+    // );
+    // navigate(`/room/detail/${randomId}`);
   };
 
   const imageChangeHandler = (e: any) => {

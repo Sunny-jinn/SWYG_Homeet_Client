@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import logo from "../../assets/svg/profile.svg";
 import ProfileNote from "./ProfileNote";
 import ProfileRoomList from "./ProfileRoomList";
 
 const ProfileContainer = () => {
   const [view, setView] = useState<string>("");
+
+  const user = localStorage.getItem("nickname");
 
   const clickHandler = (curView: string) => {
     setView(curView);
@@ -19,7 +22,7 @@ const ProfileContainer = () => {
         <div className="profile-info">
           <div className="profile-info-name">
             <div className="profile-info-title">이름</div>
-            <div className="profile-info-text">김진우</div>
+            <div className="profile-info-text">{user}</div>
           </div>
           <div className="profile-info-email">
             <div className="profile-info-title">이메일</div>

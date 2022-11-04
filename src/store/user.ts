@@ -11,13 +11,15 @@ export const userSlice = createSlice({
   initialState: {
     userId: 0,
     nickname: "",
-    token: "",
+    token: false,
   },
   reducers: {
     setUserId(state, action) {
       state.userId = action.payload.id;
       state.nickname = action.payload.nickname;
-      state.token = action.payload.token;
+    },
+    setToken(state, action) {
+      state.token = action.payload;
     },
   },
 });
