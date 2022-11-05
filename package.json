@@ -47,6 +47,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://www.homeet.shop",
   "devDependencies": {
     "@types/navermaps": "^3.0.17"
   }

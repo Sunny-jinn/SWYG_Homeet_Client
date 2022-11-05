@@ -6,7 +6,8 @@ const MainInput = (): JSX.Element => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const clickHandler = () => {
-    navigate(`/search/1${inputRef.current?.value}`);
+    if (!inputRef.current?.value) alert("주소를 입력해주세요!");
+    else navigate(`/search/${inputRef.current?.value}`);
   };
 
   return (

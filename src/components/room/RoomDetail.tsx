@@ -18,7 +18,7 @@ const RoomDetail = ({ roomId }: IProps) => {
 
   useEffect(() => {
     const tempList: any = roomList.filter(
-      (list: IRoom) => list.room_id === Number(roomId)
+      (list: IRoom) => list.id === Number(roomId)
     );
     setRoom(tempList[0]);
   }, []);

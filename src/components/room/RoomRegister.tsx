@@ -11,51 +11,72 @@ const RoomRegister = (): JSX.Element => {
   const [duplex, setDuplex] = useState<string>("단층");
   const [roomImg, setRoomImg] = useState<any>([]);
   const [imageUrl, setImageUrl] = useState<any>([]);
-  const token = useSelector((state: any) => state.user.token);
+  const token = localStorage.getItem("access_token");
+  console.log(token);
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   const locationRef = useRef(null);
-  const formData = new FormData();
+  let formData = new FormData();
 
   const perRef = useRef(null);
   const oneRef = useRef(null);
   const yearRef = useRef(null);
+  const imgRef = useRef(null);
 
   const clickHandler = () => {
     console.log(locationRef.current?.value);
-    console.log(perRef.current?.value);
-    console.log(oneRef.current?.value);
-    console.log(yearRef.current?.value);
-    console.log(duplex);
-    console.log(dtype);
-    console.log(roomImg);
-    formData.append("dtype", dtype === "전세" ? "Y" : "M");
-    formData.append("location", locationRef.current?.value);
-    formData.append("content", " ");
-    formData.append("duplex", duplex);
-    formData.append("onePrice", oneRef.current?.value);
-    formData.append("perPrice", perRef.current?.value);
-    formData.append("yearPrice", yearRef.current?.value);
-    const randomId = Math.floor(Math.random() * 100000) + 1;
+    const dataObj: any = JSON.stringify({
+      imageUrl: [],
+      onePrice: oneRef.current?.value,
+      perPrice: perRef.current?.value,
+      dtype: dtype === "전세" ? "Y" : "M",
+      location: locationRef.current?.value,
+      content: "test",
+      duplex: true,
+      yearPrice: yearRef.current?.value,
+    });
+    // const dataObj: any = {
+    //   imageUrl: [],
+    //   onePrice: 10000,
+    //   perPrice: 10000,
+    //   dtype: "M",
+    //   location: "test",
+    //   content: "test",
+    //   duplex: true,
+    //   yearPrice: 0,
+    //   user: { id: 1, nickname: "김수민", email: "kdg1683@nate.com" },
+    // };
+    // formData.append(
+    //   "data",
+    //   `{"imageUrl":[],"onePrice":10000,"perPrice":10000,"dtype":"M","location":"appl2e", "content":"test", "duplex": true, "yearPrice":0}}`
+    // );
+    formData.append("data", dataObj);
+    let headers: any = new Headers();
+    // headers = {
+    //   // "Content-Type": "multipart/form-data",
+    //   "X-AUTH-TOKEN": token,
+    // };
+    headers.append("Content-Type", "multipart/form-data");
+    headers.append("Content-Length", " ");
+    headers.append("X-AUTH-TOKEN", token);
+    const header: any = {
+      "Content-Type": "multipart/form-data",
+      "X-AUTH-TOKEN": token,
+    };
+    for (let i = 0; i < imgRef.current?.files.length; i++) {
+      formData.append("images", imgRef.current.files[i], "file");
+    }
 
     axios
-      .post(
-        `${process.env.REACT_APP_PORT}/room/register`,
-        {
-          data: formData,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "X-AUTH-TOKEN": token,
-          },
-        }
-      )
+      .post(`http://www.homeet.shop/room/register`, formData, {
+        headers: header,
+      })
       .then((res: AxiosResponse) => console.log(res))
       .catch((err: AxiosError) => console.log(err));
+
     // dispatch(
     //   roomActions.setRoomList({
     //     room_id: randomId,
@@ -73,7 +94,8 @@ const RoomRegister = (): JSX.Element => {
 
   const imageChangeHandler = (e: any) => {
     for (let i = 0; i < e.target.files.length; i++) {
-      formData.append("images", e.target.files[i]);
+      formData.append("images", e.target.files[i], "file");
+      console.log(e.target.files[i]);
       setImageUrl((imageUrl: any) => [
         ...imageUrl,
         URL.createObjectURL(e.target.files[i]),
@@ -105,6 +127,7 @@ const RoomRegister = (): JSX.Element => {
                     multiple
                     style={{ display: "none" }}
                     onChange={imageChangeHandler}
+                    ref={imgRef}
                   />
                   <img src={uploadLogo} alt="이미지 업로드" />
                 </div>

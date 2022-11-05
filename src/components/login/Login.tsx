@@ -27,17 +27,20 @@ const Login = () => {
         "https://kauth.kakao.com/oauth/token",
         payload
       );
-      localStorage.setItem("access_token", res.data.access_token);
+      console.log(res);
+      // localStorage.setItem("access_token", res.data.access_token);
 
       axios
-        .get(`${process.env.REACT_APP_PORT}/oauth/kakao`, {
+        .get(`http://www.homeet.shop/oauth/kakao`, {
           params: {
             token: res.data.access_token,
           },
         })
         .then((res) => {
+          console.log(res);
           localStorage.setItem("nickname", res.data.nickname);
           localStorage.setItem("userId", res.data.userId);
+          localStorage.setItem("access_token", res.data.token);
           dispatch(
             userActions.setUserId({
               id: res.data.userId,

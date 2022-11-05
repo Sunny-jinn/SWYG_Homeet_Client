@@ -22,6 +22,11 @@ const Header = (): JSX.Element => {
     navigate("/room/register");
   };
 
+  const logoutClickHandler = () => {
+    localStorage.clear();
+    window.location.replace("/");
+  };
+
   return (
     <header className="m-240">
       <div className="header-logo vertical-mid">
@@ -33,6 +38,7 @@ const Header = (): JSX.Element => {
             <>
               <li onClick={profileClickHandler}>내 정보</li>
               <li onClick={registerClickHandler}>등록하기</li>
+              <li onClick={logoutClickHandler}>로그아웃</li>
             </>
           ) : (
             <a href={KAKAO_AUTH_URL}>

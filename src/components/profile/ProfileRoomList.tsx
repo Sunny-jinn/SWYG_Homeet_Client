@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { DUMMY_DATA, IRoom } from "../dummy";
+import { DUMMY_DATA } from "../dummy";
+import { IRoom } from "../../store/room";
 
 const ProfileRoomList = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const ProfileRoomList = () => {
               key={index}
               className="note-item"
               onClick={() => {
-                navigate(`/room/detail/${list.room_id}`);
+                navigate(`/room/detail/${list.id}`);
               }}
             >
               <p>
